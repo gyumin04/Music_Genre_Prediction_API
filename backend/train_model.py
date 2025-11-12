@@ -6,6 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.regularizers import l2
 from sklearn.utils.class_weight import compute_class_weight
 import numpy as np
+import pickle
 
 input_profiles_file = 'data/user_profiles.csv'
 input_activities_file = 'data/user_activities.csv'
@@ -97,6 +98,7 @@ final_df = pd.merge(
     right_on="user_id",
     how='inner'
 )
+
 final_df = final_df.drop(columns=['user_id', 'User_ID'])
 
 EPOCHS = 200
@@ -136,3 +138,5 @@ history = model.fit(x_train_scaled, y_train, epochs=EPOCHS,
                     callbacks=[early_stop])
 
 keras.saving.save_model(model, 'model/model_Genre_Analyzer.keras')
+with open("model/scaler.pkl", 'wb') as file:
+    pickle.dump(scaler, file)
