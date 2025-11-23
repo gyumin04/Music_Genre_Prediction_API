@@ -1,1 +1,8 @@
 venv/
+input.json
+user_info/
+.cache
+.env
+backend/__pycache__
+backend/test_page.html
+backend/uploads/
