@@ -1,13 +1,22 @@
 # Music_Genre_Prediction_API
 음악 스트리밍 사용자 활동 기반 선호 장르 예측 Flask API 포트폴리오 프로젝트
 
-비용때문에 서비스 비활성화 중
-
-Python 3.11, Gunicorn, Docker를 사용하여 Cloud Run에 컨테이너화된 방식으로 배포되었습니다.
+### 비용때문에 서비스 비활성화 중
 
 URL: https://genre-prediction-service-815026823441.asia-northeast3.run.app
 
 경로: /upload_with_json (POST)
+
+## 아키텍처 및 기술 스택
+
+본 API는 다음과 같은 환경과 기술을 기반으로 구축 및 배포되었습니다.
+
+* **언어**: Python 3.11
+* **웹 프레임워크**: Flask
+* **WSGI 서버**: Gunicorn (운영 환경)
+* **컨테이너**: Docker
+* **배포 환경**: Google Cloud Run (asia-northeast3, 서울 리전)
+* **주요 라이브러리**: TensorFlow/Keras, Pandas, scikit-learn 등 (세부 사항은 `requirements.txt` 참조)
 
 ## API를 사용하기 위해 필요한 입력 데이터 형식
 
@@ -34,15 +43,15 @@ URL: https://genre-prediction-service-815026823441.asia-northeast3.run.app
 
 #### 3. YouTube 및 YouTube Music 데이터 선택
 
-	3-1. 체크박스 클릭
+* 체크박스 클릭
 
 <img width="657" height="214" alt="image" src="https://github.com/user-attachments/assets/c7fba79d-8d8e-464a-911e-9c42df9bd3be" />
 
-	3-2. 필요한 데이터 선택
+* 필요한 데이터 선택
 
 <img width="322" height="705" alt="image" src="https://github.com/user-attachments/assets/5bbb32bc-0cc8-4be8-adb9-0eade269a935" />
 
-	3-3. 시청기록 데이터 형식 선택 (html > json)
+* 시청기록 데이터 형식 선택 (html > json)
 
 <img width="536" height="852" alt="image" src="https://github.com/user-attachments/assets/96d3d09b-9aa6-4911-89d3-1659042887be" />
 
