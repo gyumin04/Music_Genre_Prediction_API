@@ -1,12 +1,17 @@
 import os
+import sys
 import joblib
 import json
 from flask import Flask, request, jsonify, redirect, url_for
 import keras
 import pandas as pd
 from werkzeug.utils import secure_filename
-import find_music as fm
 from flask_cors import CORS
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+import find_music as fm
 
 app = Flask(__name__)
 CORS(app)
@@ -17,8 +22,14 @@ UPLOAD_PATH = os.path.join(app.root_path, UPLOAD_FOLDER)
 
 app.config['uploads'] = UPLOAD_PATH
 
-MODEL_PATH = 'model\model_Genre_Analyzer.keras'
-SCALER_PATH = 'model\scaler.pkl'
+try:
+    os.makedirs(UPLOAD_PATH, exist_ok=True) 
+    print(f"Upload folder ready: {UPLOAD_PATH}")
+except OSError as e:
+    print(f"Error: Failed to create upload folder: {e}")
+
+MODEL_PATH = '/app/model\model_Genre_Analyzer.keras'
+SCALER_PATH = '/app/model\scaler.pkl'
 
 ALL_GENRES = ['Pop', 'Hiphop', 'Rock', 'Classic', 'EDM', 'Ballad', 'Jazz']
 ACTIVITIES = ["viewing_history.json", "playlist.csv", "music_library_songs.csv", "subscribed.csv", "comment.csv"]
@@ -28,6 +39,10 @@ try:
     scaler = joblib.load(SCALER_PATH)
 except Exception as e:
     print(f"모델 또는 스케일러 로드 실패: {e}")
+
+@app.route('/')
+def home():
+    return "Music Genre Prediction API is running!"
 
 @app.route('/health', methods=['GET'])
 def health_check():
