@@ -8,4 +8,5 @@ joblib
 pylast
 python-dotenv
 werkzeug
+yt_dlp
 gunicorn
